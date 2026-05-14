@@ -45,13 +45,62 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 
 ## Get Started
 
-### 1. Download folder "Assignment_DE"
+### 1. Clone the repository
  
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/BallJedsadakorn/dataengineer_assignment.git
+cd assignment_de
+```
+### 2. Build and start services
+ 
+```bash
+docker-compose up --build
 ```
 
-```bash
-psql -U <user> -d <database> -f sql/mock_data.sql
+### 3. Access the Airflow UI
+ 
+Open your browser and go to:
+ 
 ```
+http://localhost:8080
+```
+Default credentials:
+- **Username:** `airflow`
+- **Password:** `airflow`
+
+### 4. Manual add Airflow Connection
+ 
+- **Connection Id** : `postgres_localhost`
+- **Connection Type** : `Postgres`
+- **Host** : `host.docker.internal`
+- **Database** : `postgres`
+- **Login** : `airflow`
+- **Password** : `airflow`
+- **Port** : `5432`
+
+### 5. When finished add Airflow Connection
+
+u can try run pipeline
+
+![dbeaver screenshot](pic/airflow_ui.png)
+
+This is a simple pipeline that extract csv file into customers table.
+ 
+
+### 6. Manual Add Connection in Dbeaver
+
+Open Dbeaver
+
+- **Host** : `localhost`
+- **Port** : `5432`
+- **Database** : `postgres`
+- **Username** : `airflow`
+- **Password** : `airflow`
+
+![dbeaver screenshot](pic/dbeaver_connection.png)
+![dbeaver screenshot](pic/dbeaver_pic.png)
+
+You can try run Query from here
+the SQL query are in `config/sunday_de/sql/report_script.sql`
+
+![dbeaver screenshot](pic/example_query.png)
