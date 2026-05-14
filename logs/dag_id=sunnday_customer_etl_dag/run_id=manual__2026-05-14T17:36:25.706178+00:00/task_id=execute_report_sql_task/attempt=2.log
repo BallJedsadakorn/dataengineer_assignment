@@ -1,0 +1,160 @@
+[2026-05-14T17:37:53.270+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-05-14T17:37:53.278+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sunnday_customer_etl_dag.execute_report_sql_task manual__2026-05-14T17:36:25.706178+00:00 [queued]>
+[2026-05-14T17:37:53.283+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sunnday_customer_etl_dag.execute_report_sql_task manual__2026-05-14T17:36:25.706178+00:00 [queued]>
+[2026-05-14T17:37:53.283+0000] {taskinstance.py:2866} INFO - Starting attempt 2 of 3
+[2026-05-14T17:37:53.290+0000] {taskinstance.py:2889} INFO - Executing <Task(SQLExecuteQueryOperator): execute_report_sql_task> on 2026-05-14 17:36:25.706178+00:00
+[2026-05-14T17:37:53.297+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=468) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-14T17:37:53.296+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'sunnday_customer_etl_dag', 'execute_report_sql_task', 'manual__2026-05-14T17:36:25.706178+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/sunnday_customer_etl_dag.py', '--cfg-path', '/tmp/tmpncjqv022']
+[2026-05-14T17:37:53.298+0000] {standard_task_runner.py:72} INFO - Started process 469 to run task
+[2026-05-14T17:37:53.298+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask execute_report_sql_task
+[2026-05-14T17:37:53.322+0000] {task_command.py:467} INFO - Running <TaskInstance: sunnday_customer_etl_dag.execute_report_sql_task manual__2026-05-14T17:36:25.706178+00:00 [running]> on host e4b413dc0547
+[2026-05-14T17:37:53.369+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='sunnday_customer_etl_dag' AIRFLOW_CTX_TASK_ID='execute_report_sql_task' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T17:36:25.706178+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T17:36:25.706178+00:00'
+[2026-05-14T17:37:53.370+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-05-14T17:37:53.372+0000] {sql.py:278} INFO - Executing: --1
+with prep_data as (
+    select c.name as company_name,
+        p.description as policy_name,
+        count(cus.customer_id) as customer_apply,
+        dense_rank() over (partition by c.name order by count(cus.customer_id) desc) as policy_ranking
+    from customers cus
+        inner join company c on c.company_id = cus.company_id
+        inner join plan p on p.plan_id = cus.plan_id
+    group by c.name, p.description
+    order by p.description
+)
+select company_name, policy_name, customer_apply
+from prep_data
+where policy_ranking = 1;
+
+--2
+with prep_data as (
+    select
+        c.name,
+        cus.customer_id,
+        cus.first_name,
+        cus.last_name,
+        cus.plan_started_date,
+        c.expiry_date,
+        cus.preferred_hospital
+    from
+        customers cus
+        join company c on c.company_id = c.company_id
+        inner join plan p on p.plan_id = cus.plan_id
+)
+select
+    p_data.preferred_hospital,
+    count(p_data.customer_id) as count_customer
+from
+    prep_data p_data
+where
+    '2021-02-01' < p_data.expiry_date
+group by
+    p_data.preferred_hospital;
+
+--3
+with prep_data as(
+    select
+        cu.customer_id,
+        cu.first_name,
+        cu.last_name,
+        cu.plan_started_date,
+        c.effective_date,
+        c.expiry_date,
+        CONCAT(cu.first_name, ' ', cu.last_name) AS full_name,
+        ROUND(
+            (c.expiry_date - cu.plan_started_date :: DATE) / 365.0,
+            2
+        ) AS years_with_us
+    FROM
+        customers cu
+        JOIN company c ON c.company_id = cu.company_id
+    ORDER BY
+        years_with_us desc
+)
+SELECT
+    p_data.full_name,
+    SUM(years_with_us) AS total_amount
+FROM
+    prep_data p_data
+group by
+    p_data.full_name
+order by
+    total_amount ASC;
+[2026-05-14T17:37:53.377+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2026-05-14T17:37:53.389+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2026-05-14T17:37:53.397+0000] {sql.py:553} INFO - Running statement: --1
+with prep_data as (
+    select c.name as company_name,
+        p.description as policy_name,
+        count(cus.customer_id) as customer_apply,
+        dense_rank() over (partition by c.name order by count(cus.customer_id) desc) as policy_ranking
+    from customers cus
+        inner join company c on c.company_id = cus.company_id
+        inner join plan p on p.plan_id = cus.plan_id
+    group by c.name, p.description
+    order by p.description
+)
+select company_name, policy_name, customer_apply
+from prep_data
+where policy_ranking = 1;
+
+--2
+with prep_data as (
+    select
+        c.name,
+        cus.customer_id,
+        cus.first_name,
+        cus.last_name,
+        cus.plan_started_date,
+        c.expiry_date,
+        cus.preferred_hospital
+    from
+        customers cus
+        join company c on c.company_id = c.company_id
+        inner join plan p on p.plan_id = cus.plan_id
+)
+select
+    p_data.preferred_hospital,
+    count(p_data.customer_id) as count_customer
+from
+    prep_data p_data
+where
+    '2021-02-01' < p_data.expiry_date
+group by
+    p_data.preferred_hospital;
+
+--3
+with prep_data as(
+    select
+        cu.customer_id,
+        cu.first_name,
+        cu.last_name,
+        cu.plan_started_date,
+        c.effective_date,
+        c.expiry_date,
+        CONCAT(cu.first_name, ' ', cu.last_name) AS full_name,
+        ROUND(
+            (c.expiry_date - cu.plan_started_date :: DATE) / 365.0,
+            2
+        ) AS years_with_us
+    FROM
+        customers cu
+        JOIN company c ON c.company_id = cu.company_id
+    ORDER BY
+        years_with_us desc
+)
+SELECT
+    p_data.full_name,
+    SUM(years_with_us) AS total_amount
+FROM
+    prep_data p_data
+group by
+    p_data.full_name
+order by
+    total_amount ASC;, parameters: None
+[2026-05-14T17:37:53.401+0000] {sql.py:562} INFO - Rows affected: 19
+[2026-05-14T17:37:53.421+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-05-14T17:37:53.421+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=sunnday_customer_etl_dag, task_id=execute_report_sql_task, run_id=manual__2026-05-14T17:36:25.706178+00:00, execution_date=20260514T173625, start_date=20260514T173753, end_date=20260514T173753
+[2026-05-14T17:37:53.442+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-05-14T17:37:53.453+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T17:37:53.454+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

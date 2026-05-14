@@ -1,0 +1,11 @@
+customer_id,company_id,first_name,last_name,plan_id,gender,district,province,preferred_hospital,plan_started_date,created_at,updated_at,created_by,updated_by,loaddt
+11,1,John,Doe,1,M,Wattana,Bangkok,Bumrungrad,2021-01-15,2026-05-14 09:00:00,2026-05-14 09:00:00,system,system,202605142100
+12,1,Jane,Smith,2,F,Bang Rak,Bangkok,Samitivej,2021-02-10,2026-05-14 09:05:00,2026-05-14 09:05:00,system,system,202605142100
+13,2,Michael,Johnson,3,M,Mueang,Chiang Mai,Bangkok Hospital Chiang Mai,2021-03-01,2026-05-14 09:10:00,2026-05-14 09:10:00,admin,admin,202605142100
+14,2,Emily,Williams,1,F,Hat Yai,Songkhla,Hat Yai Hospital,2021-01-20,2026-05-14 09:15:00,2026-05-14 09:15:00,admin,admin,202605142100
+15,1,David,Brown,2,M,Kathu,Phuket,Dibuk Hospital,2021-04-12,2026-05-14 09:20:00,2026-05-14 09:20:00,etl_user,etl_user,202605142100
+16,1,Sarah,Davis,3,F,Si Racha,Chonburi,Samitivej Chonburi,2021-02-25,2026-05-14 09:25:00,2026-05-14 09:25:00,etl_user,etl_user,202605142100
+17,2,Chris,Miller,1,M,คลองเตย,Bangkok,MedPark Hospital,2021-05-05,2026-05-14 09:30:00,2026-05-14 09:30:00,data_team,data_team,202605142100
+18,2,Lisa,Wilson,2,F,เมือง,Khon Kaen,Khon Kaen Ram Hospital,2021-03-18,2026-05-14 09:35:00,2026-05-14 09:35:00,data_team,data_team,202605142100
+19,2,Daniel,Moore,3,M,เมือง,Nakhon Ratchasima,Maharat Hospital,2021-04-01,2026-05-14 09:40:00,2026-05-14 09:40:00,system,system,202605142100
+20,2,Anna,Taylor,1,F,ธัญบุรี,Pathum Thani,Thammasat Hospital,2021-01-08,2026-05-14 09:45:00,2026-05-14 09:45:00,system,system,202605142100

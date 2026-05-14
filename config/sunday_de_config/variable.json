@@ -1,0 +1,10 @@
+{
+    "conn_id": "postgres_localhost",
+    "email": "jedsadakornboonlerd@gmail.com",
+    "sql_file_paths": {
+        "report_sql": "./config/sunday_de/sql/report_script.sql"
+    },
+    "table_name": "customers",
+    "schema_name": "public",
+    "chunksize": 100000
+}
