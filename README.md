@@ -34,7 +34,7 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 - [Docker](https://www.docker.com/) & Docker Compose
 - Python 3.8+
 - Apache Airflow 2.x
-- Dbeaver
+- DBeaver
 
 ---
 ## 📊 ER Diagram
@@ -82,14 +82,14 @@ Default credentials:
 
 u can open dag and try run pipeline
 
-![dbeaver screenshot](pic/etl_pipeline.png)
+![Dag screenshot](pic/customer_etl_dag.png)
 
-This is a simple pipeline that extract csv file into customers table.
+This is a simple pipeline that extract csv file into customers table then create view in Postgresql.
  
 
-### 6. Manual Add Connection in Dbeaver
+### 6. Manual Add Connection in DBeaver
 
-Open Dbeaver
+Open DBeaver
 
 - **Host** : `localhost`
 - **Port** : `5432`
@@ -97,18 +97,21 @@ Open Dbeaver
 - **Username** : `airflow`
 - **Password** : `airflow`
 
-![dbeaver screenshot](pic/dbeaver_connection.png)
-![dbeaver screenshot](pic/dbeaver_pic.png)
+![DBeaver screenshot](pic/dbeaver_connection.png)
+![DBeaver screenshot](pic/dbeaver_pic.png)
 
 You can try run Query from here
-the SQL query are in `config/test_de/sql/report_script.sql`
+the SQL query are in `config/test_de/sql/report_script.sql or look for the Views below`
 
 **Write the SQL query for business reporting**
 **3.a.**
-![dbeaver screenshot](pic/example_query1.png)
+![SQL screenshot](pic/example_query1.png)
 
 **3.b.**
-![dbeaver screenshot](pic/example_query2.png)
+![SQL screenshot](pic/example_query2.png)
 
 **3.c.**
-![dbeaver screenshot](pic/example_query3.png)
+![SQL screenshot](pic/example_query3.png)
+
+**Views**
+![view screenshot](pic/view_dbeaver.png)
