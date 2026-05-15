@@ -15,15 +15,30 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 ├── dags/
 │   └── customer_etl_dag.py # Main Airflow DAG definition
 ├── dataset/
-│   └── customers.csv               # Source customer data
+│   └── customers.csv               # Source mock up customer data
 ├── logs/                           # Airflow task logs
+├── Part1_BasicKnowledge/           # Python code
+│    └── 1_python_assignment.py
+│    └── 2_python_assignment.py
+│    └── 3_python_assignment.py
+├── pic/                            # Pictures for readme.md file
+│   ├── customer_etl_dag.png
+│   ├── dbeaver_connection.png
+│   ├── dbeaver_pic.png
+│   ├── er_diagram.png
+│   ├── example_query1.png
+│   ├── example_query2.png
+│   ├── example_query3.png
+│   ├── table.png
+│   ├── view_1.png
+│   ├── view_2.png
+│   └── view_3.png
 ├── plugins/                        # Custom Airflow plugins
 ├── sql/
 │   ├── create_table.sql            # DDL for target tables
 │   └── mock_data.sql               # Mock data for local testing
 ├── docker-compose.yaml             # Docker services configuration
 ├── Dockerfile                      # Custom Airflow image
-├── er_diagram.png                  # Entity-relationship diagram
 └── requirements.txt                # Python dependencies
 ```
 
