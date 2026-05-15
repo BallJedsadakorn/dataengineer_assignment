@@ -82,7 +82,7 @@ Default credentials:
 
 u can try run pipeline
 
-![dbeaver screenshot](pic/airflow_ui.png)
+![dbeaver screenshot](pic/airflow_ui.pn)
 
 This is a simple pipeline that extract csv file into customers table.
  

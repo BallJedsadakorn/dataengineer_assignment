@@ -12,7 +12,7 @@ def load_config(config_path):
     with open(config_path, "r") as file:
         return json.load(file)
         
-CONFIG = load_config("./config/sunday_de_config/variable.json")
+CONFIG = load_config("./config/test_de_config/variable.json")
 CSV_FILE_PATH = "/opt/airflow/dataset/customers.csv"
 
 default_args = {
