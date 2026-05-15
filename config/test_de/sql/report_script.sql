@@ -1,4 +1,4 @@
-CREATE VIEW IF NOT EXISTS most_popular_plan_by_company AS
+CREATE OR REPLACE VIEW most_popular_plan_by_company AS
 --1 Most popular plan in a policy by companies 
 with prep_data as (
     select c.name as company_name,
@@ -13,9 +13,10 @@ with prep_data as (
 )
 select company_name, policy_name, customer_apply
 from prep_data
-where policy_ranking = 1;
+where policy_ranking = 1
+order by company_name asc;
 
-CREATE VIEW IF NOT EXISTS number_customer_by_preferred_hospital AS
+CREATE OR REPLACE VIEW number_customer_by_preferred_hospital AS
 --2 Number of customer that is covered by preferred hospital on 1-Feb-2021 (The effective date and expiry date itself also count as covered) for demand projection 
 with prep_data as (
     select
@@ -43,7 +44,7 @@ group by
 order by
     count_customer desc;
 
-CREATE VIEW IF NOT EXISTS sum_total_year_customer AS
+CREATE OR REPLACE VIEW sum_total_year_customer AS
 --3 How many years has each customer been with us (one customer can have many policies) 
 with prep_data as(
     select
