@@ -49,7 +49,7 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
  
 ```bash
 git clone https://github.com/BallJedsadakorn/dataengineer_assignment.git
-cd assignment_de
+cd dataengineer_assignment
 ```
 ### 2. Build and start services
  
@@ -82,7 +82,7 @@ Default credentials:
 
 u can try run pipeline
 
-![dbeaver screenshot](pic/airflow_ui.pn)
+![dbeaver screenshot](pic/etl_pipeline.png)
 
 This is a simple pipeline that extract csv file into customers table.
  
