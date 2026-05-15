@@ -56,6 +56,14 @@ cd dataengineer_assignment
 ```bash
 docker compose up --build
 ```
+If you don't see any table in Postgresql try delete the volume and recreate
+```bash
+docker compose down -v
+docker compose up
+```
+
+![table screenshot](pic/table.png)
+
 
 ### 3. Access the Airflow UI
  
