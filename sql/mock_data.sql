@@ -3,7 +3,8 @@
 SET TIME ZONE 'UTC';
 -- Company
 INSERT INTO company (name, district, province, phone_no, effective_date, expiry_date, created_at, updated_at, created_by, updated_by) VALUES
-('AAA Co', 'Bangrak', 'Bangkok', '02-123-4567', '2021-01-01', '2022-01-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'system', 'system');
+('AAA Co', 'Bangrak', 'Bangkok', '02-123-4567', '2021-01-01', '2022-01-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'system', 'system'),
+('BBB Co', 'Bangmod', 'Bangkok', '02-321-5567', '2021-01-01', '2024-01-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'system', 'system'),
 
 -- Plans
 INSERT INTO plan (description, created_at, updated_at, created_by, updated_by) VALUES

@@ -26,7 +26,7 @@ with prep_data as (
         cus.preferred_hospital
     from
         customers cus
-        join company c on c.company_id = c.company_id
+        join company c on c.company_id = cus.company_id
         inner join plan p on p.plan_id = cus.plan_id
 )
 select
