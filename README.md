@@ -80,7 +80,7 @@ Default credentials:
 
 ### 5. When finished add Airflow Connection
 
-u can try run pipeline
+u can open dag and try run pipeline
 
 ![dbeaver screenshot](pic/etl_pipeline.png)
 
@@ -101,6 +101,14 @@ Open Dbeaver
 ![dbeaver screenshot](pic/dbeaver_pic.png)
 
 You can try run Query from here
-the SQL query are in `config/sunday_de/sql/report_script.sql`
+the SQL query are in `config/test_de/sql/report_script.sql`
 
-![dbeaver screenshot](pic/example_query.png)
+**Write the SQL query for business reporting**
+**3.a.**
+![dbeaver screenshot](pic/example_query1.png)
+
+**3.b.**
+![dbeaver screenshot](pic/example_query2.png)
+
+**3.c.**
+![dbeaver screenshot](pic/example_query3.png)
