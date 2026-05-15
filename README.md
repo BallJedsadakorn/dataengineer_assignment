@@ -101,17 +101,18 @@ Open DBeaver
 ![DBeaver screenshot](pic/dbeaver_pic.png)
 
 You can try run Query from here
-the SQL query are in `config/test_de/sql/report_script.sql or look for the Views below`
+the SQL query are in `config/test_de/sql/report_script.sql or look for data and Views below`
 
 **Write the SQL query for business reporting**
+
 **3.a.**
 ![SQL screenshot](pic/example_query1.png)
-
+![view screenshot](pic/view_1.png)
 **3.b.**
 ![SQL screenshot](pic/example_query2.png)
-
+![view screenshot](pic/view_2.png)
 **3.c.**
 ![SQL screenshot](pic/example_query3.png)
+![view screenshot](pic/view_3.png)
 
-**Views**
-![view screenshot](pic/view_dbeaver.png)
+---
