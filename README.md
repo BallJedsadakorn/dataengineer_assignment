@@ -54,7 +54,7 @@ cd dataengineer_assignment
 ### 2. Build and start services
  
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ### 3. Access the Airflow UI
