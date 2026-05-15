@@ -90,7 +90,7 @@ def sunnday_customer_etl_dag():
     )
 
     create_view_sql = SQLExecuteQueryOperator(
-        task_id="truncate_sql_task",
+        task_id="create_view_task",
         conn_id=CONFIG["conn_id"],
         sql=create_view_query
     )
