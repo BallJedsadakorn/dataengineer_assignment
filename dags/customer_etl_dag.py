@@ -35,7 +35,7 @@ DAG_ID = Path(__file__).stem
     catchup=False,
     tags=["author:ball"],
 )
-def sunnday_customer_etl_dag():
+def customer_etl_dag():
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end", trigger_rule=TriggerRule.ALL_SUCCESS)
 
@@ -99,4 +99,4 @@ def sunnday_customer_etl_dag():
     chain(start, csv_to_table, create_view_sql, end)
 
 # Instantiate the DAG
-sunnday_customer_etl_dag()
+customer_etl_dag()
