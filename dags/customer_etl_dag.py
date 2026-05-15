@@ -29,8 +29,8 @@ DAG_ID = Path(__file__).stem
 @dag(
     dag_id=DAG_ID,
     default_args=default_args,
-    schedule=None,
-    start_date=datetime(2023, 12, 21),
+    schedule="0 1 * * *",
+    start_date=datetime(2026, 5, 14),
     catchup=False,
     tags=["author:ball"],
 )
