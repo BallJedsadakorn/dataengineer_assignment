@@ -1,3 +1,4 @@
+CREATE VIEW most_popular_plan_by_company AS
 --1 Most popular plan in a policy by companies 
 with prep_data as (
     select c.name as company_name,
@@ -14,6 +15,7 @@ select company_name, policy_name, customer_apply
 from prep_data
 where policy_ranking = 1;
 
+CREATE VIEW number_customer_by_preferred_hospital AS
 --2 Number of customer that is covered by preferred hospital on 1-Feb-2021 (The effective date and expiry date itself also count as covered) for demand projection 
 with prep_data as (
     select
@@ -35,10 +37,13 @@ select
 from
     prep_data p_data
 where
-    '2021-02-01' < p_data.expiry_date
+    p_data.expiry_date > DATE '2021-02-01'
 group by
-    p_data.preferred_hospital;
+    p_data.preferred_hospital
+order by
+    count_customer desc;
 
+CREATE VIEW sum_total_year_customer AS
 --3 How many years has each customer been with us (one customer can have many policies) 
 with prep_data as(
     select
@@ -61,10 +66,10 @@ with prep_data as(
 )
 SELECT
     p_data.full_name,
-    SUM(years_with_us) AS total_amount
+    SUM(years_with_us) AS total_year_amount
 FROM
     prep_data p_data
 group by
     p_data.full_name
 order by
-    total_amount ASC;
+    total_year_amount ASC;

@@ -1,4 +1,5 @@
 from airflow.operators.python import PythonOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.models.baseoperator import chain
 import pandas as pd, json
@@ -50,6 +51,11 @@ def sunnday_customer_etl_dag():
         )
         return create_engine(conn_string)
 
+    def read_sql(file_path):
+        """Read SQL file content and return as a string."""
+        with open(file_path, "r") as file:
+            return file.read()
+
     def csv_to_postgresql():
         """Query the Postgres database and insert results into a table."""
         try:
@@ -76,13 +82,21 @@ def sunnday_customer_etl_dag():
         finally:
             engine.dispose()
 
+    create_view_query = read_sql(CONFIG["sql_file_paths"]["create_view"])
+
     csv_to_table = PythonOperator(
         task_id='query_postgres_task',
         python_callable=csv_to_postgresql,
     )
 
+    create_view_sql = SQLExecuteQueryOperator(
+        task_id="truncate_sql_task",
+        conn_id=CONFIG["conn_id"],
+        sql=create_view_query
+    )
+
     # Define task dependencies
-    chain(start, csv_to_table, end)
+    chain(start, csv_to_table, create_view_sql, end)
 
 # Instantiate the DAG
 sunnday_customer_etl_dag()
