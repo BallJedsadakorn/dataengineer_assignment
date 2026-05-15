@@ -39,7 +39,7 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 ---
 ## 📊 ER Diagram
 
-![ER Diagram](er_diagram.png)
+![ER Diagram](pic/er_diagram.png)
 
 ---
 
