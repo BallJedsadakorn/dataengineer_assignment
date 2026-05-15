@@ -8,12 +8,12 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 
 ```
 ├── config/
-│   ├── sunday_de/sql/
+│   ├── test_de/sql/
 │   │   └── report_script.sql       # SQL script for reporting
-│   └── sunday_de_config/
+│   └── test_de_config/
 │       └── variable.json           # Airflow variable configurations
 ├── dags/
-│   └── sunnday_customer_etl_dag.py # Main Airflow DAG definition
+│   └── customer_etl_dag.py # Main Airflow DAG definition
 ├── dataset/
 │   └── customers.csv               # Source customer data
 ├── logs/                           # Airflow task logs
