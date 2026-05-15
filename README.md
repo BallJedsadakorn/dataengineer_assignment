@@ -13,7 +13,7 @@ An Apache Airflow-based ETL pipeline that extracts  csv files into table custome
 │   └── test_de_config/
 │       └── variable.json           # Airflow variable configurations
 ├── dags/
-│   └── customer_etl_dag.py # Main Airflow DAG definition
+│   └── customer_etl_dag.py         # Main Airflow DAG definition
 ├── dataset/
 │   └── customers.csv               # Source mock up customer data
 ├── logs/                           # Airflow task logs
